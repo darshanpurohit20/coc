@@ -104,3 +104,9 @@ stopBtn.addEventListener("click", () => {
   loader.classList.add("hidden");
   console.log("Fetch stopped by user!");
 });
+
+const darkModeSwitch = document.getElementById("darkModeSwitch");
+
+darkModeSwitch.addEventListener("change", () => {
+  document.body.classList.toggle("dark-mode", darkModeSwitch.checked);
+});

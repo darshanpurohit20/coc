@@ -3,6 +3,10 @@ const stopBtn = document.getElementById("stopBtn");
 const output = document.getElementById("output");
 const loader = document.getElementById("loader");
 
+const clanTypeFilter = document.getElementById("clanTypeFilter");
+const minMembersFilter = document.getElementById("minMembersFilter");
+const raidLeagueFilter = document.getElementById("raidLeagueFilter");
+
 const BACKEND_URL = "https://33775888b504.ngrok-free.app/clan"; 
 const BATCH_SIZE = 20; // smaller batch to avoid 429
 let stopRequested = false; // flag to stop fetching
@@ -40,6 +44,19 @@ fetchBtn.addEventListener("click", async () => {
       const results = await Promise.all(batchPromises);
 
       results.forEach(clan => {
+        // Apply filters
+        if (!clan.error) {
+          const typeFilter = clanTypeFilter.value;
+          const minMembers = parseInt(minMembersFilter.value) || 0;
+          const raidLeague = raidLeagueFilter.value;
+
+          if ((typeFilter && clan.type !== typeFilter) ||
+              (clan.members < minMembers) ||
+              (raidLeague && clan.raidLeague?.name !== raidLeague)) {
+            return; // skip this clan if it doesn't match filters
+          }
+        }
+
         const card = document.createElement("div");
         card.className = "clan-card";
 
@@ -63,7 +80,7 @@ fetchBtn.addEventListener("click", async () => {
             <p><strong>Level:</strong> ${clan.clanLevel || "N/A"}</p>
             <p><strong>Required Trophies:</strong> ${clan.requiredTrophies || "N/A"}</p>
             <p><strong>Capital League:</strong> ${clan.capitalLeague?.name || "N/A"}</p>
-            <p><strong>Clan War League:</strong> ${clan.warLeague?.name || "N/A"}</p>
+            <p><strong>Raid League:</strong> ${clan.raidLeague?.name || "N/A"}</p>
             <img src="${clan.badgeUrls?.medium || ''}" alt="Clan Badge" style="width:50px;height:50px;"/>
           `;
         }

@@ -3,7 +3,7 @@ const output = document.getElementById("output");
 const loader = document.getElementById("loader");
 
 const BACKEND_URL = "https://33775888b504.ngrok-free.app/clan"; 
-const CONCURRENCY = 25; // number of requests running in parallel
+const CONCURRENCY = 10; // number of requests running in parallel
 const MAX_RETRIES = 3;   // retries for 429 errors
 
 fetchBtn.addEventListener("click", async () => {

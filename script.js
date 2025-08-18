@@ -14,7 +14,7 @@ fetchBtn.addEventListener("click", async () => {
     const clanTags = text.split("\n").map(t => t.trim()).filter(Boolean); 
 
     // Process in batches 
-    for (let i = 0; i < clanTags.length(); i += BATCH_SIZE) { 
+    for (let i = 0; i < clanTags.length; i += BATCH_SIZE) { 
       const batch = clanTags.slice(i, i + BATCH_SIZE); 
       const batchPromises = batch.map(tag => fetch(BACKEND_URL, { 
         method: "POST", 

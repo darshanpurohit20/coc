@@ -105,8 +105,38 @@ stopBtn.addEventListener("click", () => {
   console.log("Fetch stopped by user!");
 });
 
-const darkModeSwitch = document.getElementById("darkModeSwitch");
 
-darkModeSwitch.addEventListener("change", () => {
-  document.body.classList.toggle("dark-mode", darkModeSwitch.checked);
+
+const body = document.body;
+const toggle = document.getElementById('themeToggle');
+
+// Function to apply a theme
+function applyTheme(theme) {
+  if (theme === 'dark') body.classList.add('dark-mode');
+  else body.classList.remove('dark-mode');
+}
+
+// Check saved theme in localStorage first
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+  applyTheme(savedTheme);
+} else {
+  // If no saved theme, use system preference
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(prefersDark ? 'dark' : 'light');
+}
+
+// Toggle button click
+toggle.addEventListener('click', () => {
+  body.classList.toggle('dark-mode');
+  // Save user preference
+  localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+});
+
+// Optional: Listen for system theme changes dynamically
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+  const savedTheme = localStorage.getItem('theme');
+  if (!savedTheme) { // only update if user hasn't manually chosen
+    applyTheme(e.matches ? 'dark' : 'light');
+  }
 });

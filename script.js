@@ -1,20 +1,27 @@
 const fetchBtn = document.getElementById("fetchBtn");
+const fileInput = document.getElementById("fileInput");
 const output = document.getElementById("output");
-const clanTagsTextarea = document.getElementById("clanTags");
 
-// Change this to your backend URL
+// Change to your backend URL
 const BACKEND_URL = "http://localhost:9032/clans";
 
 fetchBtn.addEventListener("click", async () => {
-  const clanTags = clanTagsTextarea.value.split("\n").map(t => t.trim()).filter(Boolean);
+  if (!fileInput.files.length) {
+    output.textContent = "Please select a clan_tags.txt file.";
+    return;
+  }
+
+  const file = fileInput.files[0];
+  const text = await file.text();
+  const clanTags = text.split("\n").map(t => t.trim()).filter(Boolean);
 
   if (clanTags.length === 0) {
-    output.textContent = "Please enter at least one clan tag.";
+    output.textContent = "No valid clan tags found in the file.";
     return;
   }
 
   try {
-    output.textContent = "Fetching data...";
+    output.textContent = "Fetching data from server...";
     const res = await fetch(BACKEND_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

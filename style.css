@@ -24,6 +24,41 @@ body {
     text-align: center;
 }
 
+/* Container for filters */
+.filter-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Label styling */
+.filter-container label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Select dropdown styling */
+.filter-container select {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.filter-container select:hover {
+    border-color: #888;
+}
+
+.filter-container select:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
 /* Heading */
 .container h1 {
     margin-bottom: 20px;

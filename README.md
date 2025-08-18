@@ -1,41 +1,35 @@
-Clan Data Dashboard
+# Clan Data Dashboard
 
-A web-based dashboard to fetch, filter, and display Clash of Clans clan data using clan tags. Features include batch fetching, filters, offline caching, theme toggling, and manual JSON export.
+A **web-based dashboard** to fetch, filter, and display Clash of Clans clan data using clan tags.  
+Features include **batch fetching**, **filters**, **offline caching**, **theme toggling**, and **manual JSON export**.
 
-Features
+---
 
-Fetch clan data from the Clash of Clans API via a backend.
+## Features
 
-Batch processing to avoid API rate limits (20 clans per batch by default).
+- **Fetch clan data** from the Clash of Clans API via a backend.
+- **Batch processing** to avoid API rate limits (**20 clans per batch** by default).
+- **Filters for:**
+  - Clan type (e.g., “Open”, “Invite Only”)
+  - Members range
+  - Minimum required Town Hall level
+  - Capital League
+- **Offline caching**: Saves last 200 fetched clans in browser storage.
+- **Last fetched timestamp**: Displays when data was last updated.
+- **Theme toggle**: Dark/light mode with system preference detection.
+- **Error handling**: Displays failed fetches in red cards.
+- **Optional JSON export**: Allows downloading fetched clans as a `clans.json` file.
 
-Filters for:
+---
 
-Clan type (e.g., “Open”, “Invite Only”)
+## Installation
 
-Members range
+1. **Clone the repository:**
 
-Minimum required Town Hall level
-
-Capital League
-
-Offline caching: Saves last 200 fetched clans in browser storage.
-
-Last fetched timestamp: Displays when data was last updated.
-
-Theme toggle: Dark/light mode with system preference detection.
-
-Error handling: Displays failed fetches in red cards.
-
-Optional JSON export: Allows downloading fetched clans as a clans.json file.
-
-Installation
-
-Clone the repository:
-
-git clone https://github.com/yourusername/clan-data-dashboard.git
+```bash
+git clone https://github.com/darshanpurohit07/coc.git
 cd clan-data-dashboard
-
-
+```
 Open in browser:
 
 Open index.html in any modern browser (Chrome, Firefox, Edge).
@@ -56,7 +50,7 @@ If the API fails, cached clans (last 200) will be shown automatically.
 
 Optional: Add a “Save as JSON” button to download fetched clans.
 
-File Structure
+***File Structure***
 clan-data-dashboard/
 │
 ├─ index.html          # Main dashboard HTML
@@ -64,6 +58,7 @@ clan-data-dashboard/
 ├─ script.js           # Fetching, filtering, caching, theme logic
 ├─ clan_tags.txt       # List of clan tags (one per line)
 ├─ README.md           # Project documentation
+
 
 Technologies Used
 

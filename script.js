@@ -50,7 +50,11 @@ fetchBtn.addEventListener("click", async () => {
         } else {
           card.innerHTML = `
             <h2>${clan.name || "Unknown Clan"}</h2>
-            <p><strong>Tag:</strong> ${clan.tag}</p>
+            <p><strong>Clan Link:</strong> 
+     <a href="https://link.clashofclans.com/en?action=OpenClanProfile&tag=${encodeURIComponent(clan.tag)}" target="_blank">
+       Join / View
+     </a>
+  </p>
             <p><strong>Level:</strong> ${clan.level || "N/A"}</p>
             <p><strong>Members:</strong> ${clan.members || "N/A"}</p>
           `;

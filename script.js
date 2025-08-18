@@ -79,8 +79,7 @@ fetchBtn.addEventListener("click", async () => {
             <p><strong>Members:</strong> ${clan.members || "N/A"}</p>
             <p><strong>Level:</strong> ${clan.clanLevel || "N/A"}</p>
             <p><strong>Required Trophies:</strong> ${clan.requiredTrophies || "N/A"}</p>
-            <p><strong>Capital League:</strong> ${clan.capitalLeague?.name || "N/A"}</p>
-            <p><strong>Raid League:</strong> ${clan.raidLeague?.name || "N/A"}</p>
+            <p><strong>Capital League:</strong> ${clan.capitalLeague?.name || "N/A"}</p> <p><strong>Clan War League:</strong> ${clan.warLeague?.name || "N/A"}</p>
             <img src="${clan.badgeUrls?.medium || ''}" alt="Clan Badge" style="width:50px;height:50px;"/>
           `;
         }

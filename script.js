@@ -37,7 +37,34 @@ fetchBtn.addEventListener("click", async () => {
 
       const results = await Promise.all(batchPromises);
 
-      results.forEach(clan => { const card = document.createElement("div"); card.className = "clan-card"; if (clan.error) { card.style.background = "#f8d7da"; card.innerHTML = <h2>Failed to fetch</h2> <p><strong>Tag:</strong> ${clan.tag}</p> <p style="color:red;">${clan.error}</p> ; } else { card.innerHTML = <h2>${clan.name || "Unknown Clan"}</h2> <p><strong>Clan Link:</strong> <a href="https://link.clashofclans.com/en?action=OpenClanProfile&tag=${encodeURIComponent(clan.tag)}" target="_blank"> <b>Join</b> </a> </p> <p><strong>Members:</strong> ${clan.members}</p> <p><strong>Level:</strong> ${clan.level || "N/A"}</p> ; } output.appendChild(card); }); } loader.classList.add("hidden");
+  results.forEach(clan => {
+  const card = document.createElement("div");
+  card.className = "clan-card";
+
+  if (clan.error) {
+    card.style.background = "#f8d7da";
+    card.innerHTML = `
+      <h2>Failed to fetch</h2>
+      <p><strong>Tag:</strong> ${clan.tag}</p>
+      <p style="color:red;">${clan.error}</p>
+    `;
+  } else {
+    card.innerHTML = `
+      <h2>${clan.name || "Unknown Clan"}</h2>
+      <p><strong>Clan Link:</strong> 
+        <a href="https://link.clashofclans.com/en?action=OpenClanProfile&tag=${encodeURIComponent(clan.tag)}" target="_blank">
+          <b>Join</b>
+        </a>
+      </p>
+      <p><strong>Members:</strong> ${clan.members}</p>
+      <p><strong>Level:</strong> ${clan.level || "N/A"}</p>
+    `;
+  }
+
+  output.appendChild(card);
+});
+
+loader.classList.add("hidden");
 
   } catch (err) {
     loader.classList.add("hidden");

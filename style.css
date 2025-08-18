@@ -23,6 +23,46 @@ body {
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     text-align: center;
 }
+/* Filter Section Styling */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+  align-items: center;
+  background-color: #f0f4f8;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.filters label {
+  font-weight: 600;
+  margin-right: 5px;
+  color: #333;
+}
+
+.filters select,
+.filters input {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+  min-width: 120px;
+}
+
+.filters select:hover,
+.filters input:hover {
+  border-color: #007bff;
+}
+
+.filters select:focus,
+.filters input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 3px rgba(0,123,255,0.5);
+}
+
 
 /* Container for filters */
 .filter-container {

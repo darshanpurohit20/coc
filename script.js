@@ -82,7 +82,7 @@ if ((typeFilter && clan.type !== typeFilter) ||
             </p>
             <p><strong>Type:</strong> ${clan.type || "N/A"}</p>
             <p><strong>Members:</strong> ${clan.members || "0"}</p>
-            <p><strong>Required TH level:</strong> ${clan.clanTownHallLevel || "0"}</p>
+            <p><strong>Required TH level:</strong> ${clan.requiredTownhallLevel ?? "0"}</p>
             <p><strong>Required Trophies:</strong> ${clan.requiredTrophies || "0"}</p>
             <p><strong>Capital League:</strong> ${clan.capitalLeague?.name || "N/A"}</p> <p><strong>Clan War League:</strong> ${clan.warLeague?.name || "N/A"}</p>
             <img src="${clan.badgeUrls?.medium || ''}" alt="Clan Badge" style="width:50px;height:50px;"/>

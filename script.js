@@ -3,7 +3,7 @@ const output = document.getElementById("output");
 const loader = document.getElementById("loader");
 
 // Backend URL for fetching single clan info
-const BACKEND_URL = "http://localhost:9032/clan"; 
+const BACKEND_URL = "https://33775888b504.ngrok-free.app/clan"; 
 
 fetchBtn.addEventListener("click", async () => {
   output.innerHTML = "";

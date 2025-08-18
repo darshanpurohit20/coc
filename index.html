@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CoC Clans</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clan Data Dashboard</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Clash of Clans Clans</h1>
+    <div class="container">
+        <h1>Clan Data Dashboard</h1>
+        <button id="fetchButton">Fetch Clan Data</button>
+        <div id="loader" class="loader hidden"></div>
+        <div id="dataContainer" class="data-container"></div>
+    </div>
 
-  <input type="file" id="fileInput" accept=".txt" />
-  <button id="fetchBtn">Fetch Clans</button>
-
-  <div id="output">Data will appear here...</div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

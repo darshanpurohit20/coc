@@ -28,7 +28,7 @@
 
 
         <!-- Filter Section -->
-        <div class="filters filter-container">
+<!--         <div class="filters filter-container">
             <label for="clanTypeFilter">Clan Type:</label>
             <select id="clanTypeFilter">
                 <option value="">All</option>
@@ -48,7 +48,52 @@
                 <option value="Titan League II">Titan II</option>
                 <option value="Titan League III">Titan III</option>
             </select>
-        </div>
+        </div> -->
+
+        <div class="filters filter-container">
+    <label for="clanTypeFilter">Clan Type:</label>
+    <select id="clanTypeFilter">
+        <option value="">All</option>
+        <option value="open">Open</option>
+        <option value="closed">Closed</option>
+        <option value="inviteOnly">Invite Only</option>
+    </select>
+
+    <label for="minMembersFilter">Min Members:</label>
+    <select id="minMembersFilter">
+        <option value="">All</option>
+        <option value="1-10">1-10</option>
+        <option value="11-20">11-20</option>
+        <option value="21-30">21-30</option>
+        <option value="31-40">31-40</option>
+        <option value="41-50">41-50</option>
+    </select>
+
+    <label for="minTHFilter">Minimum TH:</label>
+    <select id="minTHFilter">
+        <option value="">All</option>
+        <!-- Loop for TH 10 to 18 -->
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+    </select>
+
+    <label for="raidLeagueFilter">Raid League:</label>
+    <select id="raidLeagueFilter">
+        <option value="">All</option>
+        <option value="Legend League">Legend League</option>
+        <option value="Titan League I">Titan I</option>
+        <option value="Titan League II">Titan II</option>
+        <option value="Titan League III">Titan III</option>
+    </select>
+</div>
+
 
         <!-- Action Buttons -->
         <button id="fetchBtn">Fetch Clan</button>

@@ -188,3 +188,25 @@ button:hover {
     margin-top: 10px;
     border-radius: 5px;
 }
+/* Dark mode adjustments for cards */
+body.dark-mode .clan-card {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border: 1px solid #444;
+}
+
+body.dark-mode .clan-card h2 {
+    color: #fff; /* bright heading */
+}
+
+body.dark-mode .clan-card p {
+    color: #ddd; /* readable paragraph text */
+}
+
+body.dark-mode .clan-card a {
+    color: #4aa3ff; /* links should stand out */
+}
+
+body.dark-mode .clan-card a b {
+    color: #4aa3ff; /* bold join text */
+}

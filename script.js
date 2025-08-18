@@ -42,22 +42,25 @@ fetchBtn.addEventListener("click", async () => {
       );
 
       const results = await Promise.all(batchPromises);
-
+      const minTHFilter = document.getElementById("minTHFilter");
       results.forEach(clan => {
         // Apply filters
         if (!clan.error) {
-          const typeFilter = clanTypeFilter.value;
-          const minMembers = parseInt(minMembersFilter.value) || 0;
-
-const capitalLeague = raidLeagueFilter.value; // rename variable for clarity
-
+        const typeFilter = clanTypeFilter.value;
+        const minMembers = parseInt(minMembersFilter.value.split("-")[0]) || 0; // take start of range
+        const maxMembers = parseInt(minMembersFilter.value.split("-")[1]) || 50; // take end of range
+        const minTH = parseInt(minTHFilter.value) || 0; // default 0 if not selected
+        const capitalLeague = raidLeagueFilter.value;
+          
 if ((typeFilter && clan.type !== typeFilter) ||
-    (clan.members < minMembers) ||
-    (capitalLeague && clan.capitalLeague?.name !== capitalLeague)) {
-  return; // skip this clan if it doesn't match filters
-}
-
+            (clan.members < minMembers || clan.members > maxMembers) ||
+            (capitalLeague && clan.capitalLeague?.name !== capitalLeague) ||
+            (clan.clanTownHallLevel < minTH)
+        ) {
+            return; // skip this clan
         }
+    }
+
 
         const card = document.createElement("div");
         card.className = "clan-card";
@@ -71,7 +74,7 @@ if ((typeFilter && clan.type !== typeFilter) ||
           `;
         } else {
           card.innerHTML = `
-            <h2>${clan.name || "Unknown Clan"}</h2>
+            <h2><strong>Name:</strong> ${clan.name || "Unknown Clan"}</h2>
             <p><strong>Clan Link:</strong> 
               <a href="https://link.clashofclans.com/en?action=OpenClanProfile&tag=${encodeURIComponent(clan.tag)}" target="_blank">
                 <b>Join</b>
@@ -79,7 +82,7 @@ if ((typeFilter && clan.type !== typeFilter) ||
             </p>
             <p><strong>Type:</strong> ${clan.type || "N/A"}</p>
             <p><strong>Members:</strong> ${clan.members || "0"}</p>
-            <p><strong>Level:</strong> ${clan.clanLevel || "0"}</p>
+            <p><strong>Required TH level:</strong> ${clan.clanTownHallLevel || "0"}</p>
             <p><strong>Required Trophies:</strong> ${clan.requiredTrophies || "0"}</p>
             <p><strong>Capital League:</strong> ${clan.capitalLeague?.name || "N/A"}</p> <p><strong>Clan War League:</strong> ${clan.warLeague?.name || "N/A"}</p>
             <img src="${clan.badgeUrls?.medium || ''}" alt="Clan Badge" style="width:50px;height:50px;"/>

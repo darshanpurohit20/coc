@@ -1,4 +1,4 @@
-/* Basic Reset */
+/* ================== BASIC RESET ================== */
 * {
     margin: 0;
     padding: 0;
@@ -6,51 +6,32 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Body styling */
+/* ================== BODY STYLING ================== */
 body {
     background-color: #f5f5f5;
     color: #222;
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* Dark mode */
 body.dark-mode {
     background-color: #121212;
     color: #e0e0e0;
 }
 
-body.dark-mode .container {
-    background-color: #1e1e1e;
-}
-
-body.dark-mode .clan-card {
-    background-color: #2a2a2a;
-    color: #e0e0e0;
-    border: 1px solid #444;
-}
-
-body.dark-mode button {
-    background-color: #333;
-    color: #e0e0e0;
-}
-
-body.dark-mode input,
-body.dark-mode select {
-    background-color: #2a2a2a;
-    color: #e0e0e0;
-    border: 1px solid #444;
-}
-
-/* Container */
+/* ================== CONTAINER ================== */
 .container {
     max-width: 1000px;
     margin: 50px auto;
     padding: 20px;
     background: #fff;
-    border-radius: 12px;
+    border-radius: 18px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     text-align: center;
     transition: background-color 0.3s;
+}
+
+body.dark-mode .container {
+    background-color: #1e1e1e;
 }
 
 .container h1 {
@@ -59,7 +40,11 @@ body.dark-mode select {
     transition: color 0.3s;
 }
 
-/* Filters */
+body.dark-mode .container h1 {
+    color: #ffffff;
+}
+
+/* ================== FILTERS ================== */
 .filters {
     display: flex;
     flex-wrap: wrap;
@@ -73,11 +58,19 @@ body.dark-mode select {
     transition: background-color 0.3s;
 }
 
+body.dark-mode .filters {
+    background-color: #1f1f1f;
+}
+
 .filters label {
     font-weight: 600;
     margin-right: 5px;
     color: #333;
     transition: color 0.3s;
+}
+
+body.dark-mode .filters label {
+    color: #e0e0e0;
 }
 
 .filters select,
@@ -102,7 +95,14 @@ body.dark-mode select {
     box-shadow: 0 0 3px rgba(0,123,255,0.5);
 }
 
-/* Buttons */
+body.dark-mode .filters select,
+body.dark-mode .filters input {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border: 1px solid #444;
+}
+
+/* ================== BUTTONS ================== */
 button {
     padding: 12px 25px;
     font-size: 16px;
@@ -114,21 +114,28 @@ button {
     transition: 0.3s;
 }
 
-button:hover {
-    background-color: #2980b9;
-}
 
+#fetchBtn {
+    background-color: #007BFF;
+}
+#fetchBtn:hover {
+    background-color: #007bffe1;
+}
 #stopBtn {
     background-color: #e74c3c;
-    color: white;
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 #stopBtn:hover {
     background-color: #c0392b;
 }
 
-/* Loader */
+body.dark-mode button {
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+/* ================== LOADER ================== */
 .loader {
     margin: 20px auto;
     border: 5px solid #f3f3f3;
@@ -148,7 +155,7 @@ button:hover {
     100% { transform: rotate(360deg); }
 }
 
-/* Data Container */
+/* ================== DATA CONTAINER ================== */
 .data-container {
     margin-top: 30px;
     display: grid;
@@ -156,7 +163,7 @@ button:hover {
     gap: 20px;
 }
 
-/* Individual Clan Card */
+/* ================== CLAN CARDS ================== */
 .clan-card {
     background: #ecf0f1;
     padding: 15px;
@@ -188,7 +195,7 @@ button:hover {
     margin-top: 10px;
     border-radius: 5px;
 }
-/* Dark mode adjustments for cards */
+
 body.dark-mode .clan-card {
     background-color: #2a2a2a;
     color: #e0e0e0;
@@ -196,21 +203,92 @@ body.dark-mode .clan-card {
 }
 
 body.dark-mode .clan-card h2 {
-    color: #fff; /* bright heading */
+    color: #fff;
 }
 
 body.dark-mode .clan-card p {
-    color: #ddd; /* readable paragraph text */
+    color: #ddd;
 }
 
 body.dark-mode .clan-card a {
-    color: #4aa3ff; /* links should stand out */
+    color: #4aa3ff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.header {
+    display: flex;
+    align-items: center;      /* vertically center toggle with heading */
+    justify-content: space-between; /* push heading left, toggle right */
+    margin-bottom: 20px;      /* optional spacing below header */
+}
+body.dark-mode .clan-card a:hover {
+    color: #82cfff;
 }
 
 body.dark-mode .clan-card a b {
-    color: #4aa3ff; /* bold join text */
+    color: #4aa3ff;
 }
 
-body.dark-mode .container h1 {
-    color: #ffffff; /* bright white for visibility */
+/* ================== THEME TOGGLE ================== */
+.theme-toggle {
+    position: relative;
+    width: 60px;
+    height: 34px;
+    background: #f5f5f5;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    transition: background 0.3s;
+}
+
+.theme-toggle__slider {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    z-index: 1;
+}
+
+.theme-toggle__icon {
+    z-index: 2;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+}
+
+.theme-toggle__sun {
+    color: #f1c40f;
+    opacity: 1;
+}
+
+.theme-toggle__moon {
+    color: #0a0a0a;
+    opacity: 0;
+}
+
+/* Dark mode */
+body.dark-mode .theme-toggle {
+    background: #333;
+}
+
+body.dark-mode .theme-toggle__slider {
+    transform: translateX(26px); /* moves slider to the right */
+}
+
+body.dark-mode .theme-toggle__sun {
+    opacity: 0;
+}
+
+body.dark-mode .theme-toggle__moon {
+    opacity: 1;
 }

@@ -356,3 +356,15 @@ body.dark-mode .modal-content a {
     color: #4dabf7; /* light blue or any accent color */
 }
 
+
+.header-content {
+  display: flex;
+  align-items: center; /* vertically center the logo with the title */
+  gap: 10px; /* space between logo and title */
+}
+
+.logo {
+  width: 15%; /* adjust size as needed */
+  height: 15%;
+}
+

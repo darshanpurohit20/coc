@@ -51,26 +51,28 @@ fetchBtn.addEventListener("click", async () => {
             <p style="color:red;">${clan.error}</p>
           `;
         } else {
-  card.innerHTML = `
-    <h2>${clan.name || "Unknown Clan"}</h2>
-    <p><strong>Clan Link:</strong> 
-      <a href="https://link.clashofclans.com/en?action=OpenClanProfile&tag=${encodeURIComponent(clan.tag)}" target="_blank">
-        <b>Join</b>
-      </a>
-    </p>
-    <p><strong>Type:</strong> ${clan.type || "N/A"}</p>
-    <p><strong>Members:</strong> ${clan.members || "N/A"}</p>
-    <p><strong>Level:</strong> ${clan.clanLevel || "N/A"}</p>
-    <p><strong>Required Trophies:</strong> ${clan.requiredTrophies || "N/A"}</p>
-    <p><strong>Capital League:</strong> ${clan.capitalLeague?.name || "N/A"}</p>
-    <p><strong>Clan War League:</strong> ${clan.warLeague?.name || "N/A"}</p>
-    <img src="${clan.badgeUrls?.medium || ''}" alt="Clan Badge" style="width:50px;height:50px;"/>
-  `;
-}
+          card.innerHTML = `
+            <h2>${clan.name || "Unknown Clan"}</h2>
+            <p><strong>Clan Link:</strong> 
+              <a href="https://link.clashofclans.com/en?action=OpenClanProfile&tag=${encodeURIComponent(clan.tag)}" target="_blank">
+                <b>Join</b>
+              </a>
+            </p>
+            <p><strong>Type:</strong> ${clan.type || "N/A"}</p>
+            <p><strong>Members:</strong> ${clan.members || "N/A"}</p>
+            <p><strong>Level:</strong> ${clan.clanLevel || "N/A"}</p>
+            <p><strong>Required Trophies:</strong> ${clan.requiredTrophies || "N/A"}</p>
+            <p><strong>Capital League:</strong> ${clan.capitalLeague?.name || "N/A"}</p>
+            <p><strong>Clan War League:</strong> ${clan.warLeague?.name || "N/A"}</p>
+            <img src="${clan.badgeUrls?.medium || ''}" alt="Clan Badge" style="width:50px;height:50px;"/>
+          `;
+        }
 
+        output.appendChild(card);
+      }); // end of results.forEach
+    } // end of for loop
 
     loader.classList.add("hidden");
-
   } catch (err) {
     loader.classList.add("hidden");
     console.error("Fetch error:", err);

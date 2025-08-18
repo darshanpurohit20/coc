@@ -1,5 +1,4 @@
 const fetchBtn = document.getElementById("fetchBtn");
-const fileInput = document.getElementById("fileInput");
 const output = document.getElementById("output");
 const loader = document.getElementById("loader");
 
@@ -7,20 +6,6 @@ const loader = document.getElementById("loader");
 const BACKEND_URL = "http://localhost:9032/clans";
 
 fetchBtn.addEventListener("click", async () => {
-  if (!fileInput.files.length) {
-    alert("Please select a clan_tags.txt file.");
-    return;
-  }
-
-  const file = fileInput.files[0];
-  const text = await file.text();
-  const clanTags = text.split("\n").map(t => t.trim()).filter(Boolean);
-
-  if (clanTags.length === 0) {
-    alert("No valid clan tags found in the file.");
-    return;
-  }
-
   output.innerHTML = "";
   loader.classList.remove("hidden");
 
@@ -28,7 +13,7 @@ fetchBtn.addEventListener("click", async () => {
     const res = await fetch(BACKEND_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ tags: clanTags })
+      body: JSON.stringify({ fetchAll: true }) // server already has clan tags
     });
 
     if (!res.ok) throw new Error(`Backend error: ${res.status}`);
@@ -51,6 +36,7 @@ fetchBtn.addEventListener("click", async () => {
 
   } catch (err) {
     loader.classList.add("hidden");
+    console.error("Fetch error:", err); // <-- log error to console
     output.innerHTML = `<p style="color:red;">Error: ${err.message}</p>`;
   }
 });

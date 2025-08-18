@@ -3,7 +3,7 @@ const output = document.getElementById("output");
 const loader = document.getElementById("loader");
 
 const BACKEND_URL = "https://33775888b504.ngrok-free.app/clan"; 
-const BATCH_SIZE = 200; // number of requests per batch
+const BATCH_SIZE = 100; // number of requests per batch
 
 fetchBtn.addEventListener("click", async () => {
   output.innerHTML = "";

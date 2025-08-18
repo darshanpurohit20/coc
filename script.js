@@ -48,13 +48,15 @@ fetchBtn.addEventListener("click", async () => {
         if (!clan.error) {
           const typeFilter = clanTypeFilter.value;
           const minMembers = parseInt(minMembersFilter.value) || 0;
-          const raidLeague = raidLeagueFilter.value;
 
-          if ((typeFilter && clan.type !== typeFilter) ||
-              (clan.members < minMembers) ||
-              (raidLeague && clan.raidLeague?.name !== raidLeague)) {
-            return; // skip this clan if it doesn't match filters
-          }
+const capitalLeague = raidLeagueFilter.value; // rename variable for clarity
+
+if ((typeFilter && clan.type !== typeFilter) ||
+    (clan.members < minMembers) ||
+    (capitalLeague && clan.capitalLeague?.name !== capitalLeague)) {
+  return; // skip this clan if it doesn't match filters
+}
+
         }
 
         const card = document.createElement("div");

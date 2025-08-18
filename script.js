@@ -52,7 +52,7 @@ fetchBtn.addEventListener("click", async () => {
             <h2>${clan.name || "Unknown Clan"}</h2>
             <p><strong>Clan Link:</strong> 
      <a href="https://link.clashofclans.com/en?action=OpenClanProfile&tag=${encodeURIComponent(clan.tag)}" target="_blank">
-       Join / View
+       <b>Join</b>
      </a>
   </p>
             <p><strong>Level:</strong> ${clan.level || "N/A"}</p>

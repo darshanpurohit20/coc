@@ -13,7 +13,9 @@ fetchBtn.addEventListener("click", async () => {
 
   const file = fileInput.files[0];
   const text = await file.text();
-  const clanTags = text.split("\n").map(t => t.trim()).filter(Boolean);
+  const clanTags = text.split("\n")
+                        .map(t => t.trim())
+                        .filter(Boolean);
 
   if (clanTags.length === 0) {
     output.textContent = "No valid clan tags found in the file.";

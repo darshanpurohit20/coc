@@ -210,3 +210,7 @@ body.dark-mode .clan-card a {
 body.dark-mode .clan-card a b {
     color: #4aa3ff; /* bold join text */
 }
+
+body.dark-mode .container h1 {
+    color: #ffffff; /* bright white for visibility */
+}

@@ -1,82 +1,76 @@
 const fetchBtn = document.getElementById("fetchBtn");
+const stopBtn = document.getElementById("stopBtn");
 const output = document.getElementById("output");
 const loader = document.getElementById("loader");
 
 const BACKEND_URL = "https://33775888b504.ngrok-free.app/clan"; 
-const CONCURRENCY = 10; // number of requests running in parallel
-const MAX_RETRIES = 3;   // retries for 429 errors
+const BATCH_SIZE = 20; // smaller batch to avoid 429
+let stopRequested = false; // flag to stop fetching
 
 fetchBtn.addEventListener("click", async () => {
   output.innerHTML = "";
   loader.classList.remove("hidden");
+  stopRequested = false; // reset stop flag
 
   try {
-    // Fetch clan_tags.txt
     const fileRes = await fetch("clan_tags.txt");
     const text = await fileRes.text();
     const clanTags = text.split("\n").map(t => t.trim()).filter(Boolean);
 
-    let index = 0;
+    for (let i = 0; i < clanTags.length; i += BATCH_SIZE) {
+      if (stopRequested) break; // check stop flag
 
-    async function fetchClanWithRetry(tag, retries = MAX_RETRIES) {
-      for (let attempt = 1; attempt <= retries; attempt++) {
-        try {
-          const res = await fetch(BACKEND_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ tag })
-          });
-          if (res.ok) return await res.json();
-          if (res.status === 429) {
-            // wait exponentially longer
-            await new Promise(r => setTimeout(r, attempt * 1000));
-          } else {
-            throw new Error(`Backend error for tag ${tag}: ${res.status}`);
-          }
-        } catch (err) {
-          if (attempt === retries) throw err;
-        }
-      }
-    }
+      const batch = clanTags.slice(i, i + BATCH_SIZE);
+      const batchPromises = batch.map(tag => fetch(BACKEND_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tag })
+      })
+      .then(res => {
+        if (!res.ok) throw new Error(`Backend error for tag ${tag}: ${res.status}`);
+        return res.json();
+      })
+      .catch(err => {
+        console.error(`Error fetching ${tag}:`, err.message);
+        return { tag, error: err.message };
+      }));
 
-    async function worker() {
-      while (index < clanTags.length) {
-        const i = index++;
-        const tag = clanTags[i];
-        try {
-          const clan = await fetchClanWithRetry(tag);
-          const card = document.createElement("div");
-          card.className = "clan-card";
+      const results = await Promise.all(batchPromises);
+
+      results.forEach(clan => {
+        const card = document.createElement("div");
+        card.className = "clan-card";
+        if (clan.error) {
+          card.style.background = "#f8d7da";
+          card.innerHTML = `
+            <h2>Failed to fetch</h2>
+            <p><strong>Tag:</strong> ${clan.tag}</p>
+            <p style="color:red;">${clan.error}</p>
+          `;
+        } else {
           card.innerHTML = `
             <h2>${clan.name || "Unknown Clan"}</h2>
             <p><strong>Tag:</strong> ${clan.tag}</p>
             <p><strong>Level:</strong> ${clan.level || "N/A"}</p>
             <p><strong>Members:</strong> ${clan.members || "N/A"}</p>
           `;
-          output.appendChild(card);
-        } catch (err) {
-          console.error(`Error fetching ${tag}:`, err.message);
-          const card = document.createElement("div");
-          card.className = "clan-card";
-          card.style.background = "#f8d7da";
-          card.innerHTML = `
-            <h2>Failed to fetch</h2>
-            <p><strong>Tag:</strong> ${tag}</p>
-            <p style="color:red;">${err.message}</p>
-          `;
-          output.appendChild(card);
         }
-      }
+        output.appendChild(card);
+      });
     }
 
-    // Launch workers
-    const workers = Array(CONCURRENCY).fill(null).map(() => worker());
-    await Promise.all(workers);
-
     loader.classList.add("hidden");
+
   } catch (err) {
     loader.classList.add("hidden");
     console.error("Fetch error:", err);
     output.innerHTML += `<p style="color:red;">Error: ${err.message}</p>`;
   }
+});
+
+// Stop button listener
+stopBtn.addEventListener("click", () => {
+  stopRequested = true;
+  loader.classList.add("hidden");
+  console.log("Fetch stopped by user!");
 });

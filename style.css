@@ -1,0 +1,39 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background: #f5f5f5;
+}
+
+h1 {
+  color: #b33a3a;
+}
+
+textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-family: monospace;
+}
+
+button {
+  padding: 10px 20px;
+  background: #b33a3a;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+button:hover {
+  background: #9e2e2e;
+}
+
+#output {
+  background: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  white-space: pre-wrap;
+  max-height: 500px;
+  overflow-y: auto;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}

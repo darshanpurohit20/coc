@@ -8,7 +8,7 @@ const minMembersFilter = document.getElementById("minMembersFilter");
 const raidLeagueFilter = document.getElementById("raidLeagueFilter");
 
 const BACKEND_URL = "https://4e3f07d0bd3f.ngrok-free.app/clan"; 
-const BATCH_SIZE = 20; // smaller batch to avoid 429
+const BATCH_SIZE = 200; // smaller batch to avoid 429
 let stopRequested = false; // flag to stop fetching
 
 fetchBtn.addEventListener("click", async () => {
@@ -55,7 +55,7 @@ fetchBtn.addEventListener("click", async () => {
 if ((typeFilter && clan.type !== typeFilter) ||
             (clan.members < minMembers || clan.members > maxMembers) ||
             (capitalLeague && clan.capitalLeague?.name !== capitalLeague) ||
-            (clan.requiredTownhallLevel < minTH)
+            (clan.requiredTownhallLevel >= minTH)
         ) {
             return; // skip this clan
         }

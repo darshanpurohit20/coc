@@ -55,7 +55,7 @@ fetchBtn.addEventListener("click", async () => {
 if ((typeFilter && clan.type !== typeFilter) ||
             (clan.members < minMembers || clan.members > maxMembers) ||
             (capitalLeague && clan.capitalLeague?.name !== capitalLeague) ||
-            (clan.requiredTownhallLevel >= minTH)
+            (clan.requiredTownhallLevel > minTH+1)
         ) {
             return; // skip this clan
         }

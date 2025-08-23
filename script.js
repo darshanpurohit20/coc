@@ -77,25 +77,39 @@ if ((typeFilter && clan.type !== typeFilter) ||
             <p style="color:red;">${clan.error}</p>
           `;
         } else {
-          card.innerHTML = `
-            <h2><strong>Name:</strong> ${clan.name || "Unknown Clan"}</h2>
-            <p><strong>Clan Link:</strong> 
-              <a href="https://link.clashofclans.com/en?action=OpenClanProfile&tag=${encodeURIComponent(clan.tag)}" target="_blank">
-                <b>Join</b>
-              </a>
-            </p>
-            <p><strong>Type:</strong> ${clan.type || "N/A"}</p>
-            <p><strong>Members:</strong> ${clan.members || "0"}</p>
-            <p><strong>Required TH level:</strong> ${clan.requiredTownhallLevel ?? "0"}</p>
-            <p><strong>Required Trophies:</strong> ${clan.requiredTrophies || "0"}</p>
-            <p><strong>Capital League:</strong> ${clan.capitalLeague?.name || "N/A"}</p> <p><strong>Clan War League:</strong> ${clan.warLeague?.name || "N/A"}</p>
-            <img src="${clan.badgeUrls?.medium || ''}" alt="Clan Badge" style="width:50px;height:50px;"/>
-          `;
+      card.innerHTML = `
+  <h2><strong>Name:</strong> ${clan.name || "Unknown Clan"}</h2>
+
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+    <div style="display: flex; flex-direction: column; gap: 5px;">
+      <p><strong>Clan Link:</strong> 
+       <h7> <a href="https://link.clashofclans.com/en?action=OpenClanProfile&tag=${encodeURIComponent(clan.tag)}" target="_blank">
+          <b><u>Join</u></b>
+        </a></h7>
+      </p>
+      <p><strong>Type:</strong> ${clan.type || "N/A"}</p>
+      <p><strong>Members:</strong> ${clan.members || "0"}</p>
+      <p><strong>Required TH level:</strong> ${clan.requiredTownhallLevel ?? "0"}</p>
+      <p><strong>Required Trophies:</strong> ${clan.requiredTrophies || "0"}</p>
+    </div>
+
+    <img src="${clan.badgeUrls?.medium || ''}" alt="Clan Badge" style="width:80px; height:80px; object-fit: contain;"/>
+  </div>
+
+  <p><strong>Capital League:</strong> ${clan.capitalLeague?.name || "N/A"}</p>
+  <p><strong>Clan War League:</strong> ${clan.warLeague?.name || "N/A"}</p>
+`;
+
+
+
+
+
+
         }
 
         output.appendChild(card);
-      }); // end of results.forEach
-    } // end of for loop
+      });
+    } 
 
     loader.classList.add("hidden");
   } catch (err) {

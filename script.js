@@ -13,6 +13,7 @@ const BATCH_SIZE = 20; // smaller batch to avoid 429
 let stopRequested = false; // flag to stop fetching
 
 fetchBtn.addEventListener("click", async () => {
+  
   output.innerHTML = "";
   loader.classList.remove("hidden");
   stopRequested = false; // reset stop flag

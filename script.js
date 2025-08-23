@@ -3,6 +3,7 @@ const stopBtn = document.getElementById("stopBtn");
 const output = document.getElementById("output");
 const loader = document.getElementById("loader");
 
+const familyFriendlyFilter = document.getElementById("familyFriendlyFilter").value;
 const clanTypeFilter = document.getElementById("clanTypeFilter");
 const minMembersFilter = document.getElementById("minMembersFilter");
 const raidLeagueFilter = document.getElementById("raidLeagueFilter");
@@ -51,11 +52,13 @@ fetchBtn.addEventListener("click", async () => {
         const maxMembers = parseInt(minMembersFilter.value.split("-")[1]) || 50; // take end of range
         const minTH = parseInt(minTHFilter.value) || 0; // default 0 if not selected
         const capitalLeague = raidLeagueFilter.value;
+        const familyFriendly = familyFriendlyFilter.value;
           
 if ((typeFilter && clan.type !== typeFilter) ||
             (clan.members < minMembers || clan.members > maxMembers) ||
             (capitalLeague && clan.capitalLeague?.name !== capitalLeague) ||
-            (clan.requiredTownhallLevel > minTH+1)
+            (clan.requiredTownhallLevel > minTH+1)||
+            (familyFriendly && clan.isFamilyFriendly !== isFamily)
         ) {
             return; // skip this clan
         }

@@ -48,9 +48,14 @@ The dashboard displays clan cards with relevant info.
 
 If the API fails, cached clans (last 200) will be shown automatically.
 
-Optional: Add a “Save as JSON” button to download fetched clans.
 
-***File Structure***
+## Screenshot
+
+![Dashboard Screenshot](image.png)
+
+
+## File Structure
+```
 clan-data-dashboard/
 │
 ├─ index.html          # Main dashboard HTML
@@ -58,7 +63,7 @@ clan-data-dashboard/
 ├─ script.js           # Fetching, filtering, caching, theme logic
 ├─ clan_tags.txt       # List of clan tags (one per line)
 ├─ README.md           # Project documentation
-
+```
 
 Technologies Used
 
@@ -68,7 +73,6 @@ Backend: Node.js or any API endpoint to fetch clan data (replace BACKEND_URL)
 
 Browser Storage: localStorage for caching
 
-Optional: JSON Blob download for exporting clans
 
 Notes
 

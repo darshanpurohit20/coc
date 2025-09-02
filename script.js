@@ -8,7 +8,7 @@ const clanTypeFilter = document.getElementById("clanTypeFilter");
 const minMembersFilter = document.getElementById("minMembersFilter");
 const raidLeagueFilter = document.getElementById("raidLeagueFilter");
 
-const BACKEND_URL = "https://623875416900de2c3847c57cb068035b.serveo.net/clan"; 
+const BACKEND_URL = "https://48c6e4aadda5.ngrok-free.app/clans"; 
 const BATCH_SIZE = 20; // smaller batch to avoid 429
 let stopRequested = false; // flag to stop fetching
 
